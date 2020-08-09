@@ -11,15 +11,25 @@ namespace LeerData
         {
 
             using(var db = new AppVentaCursosContext()){
-                var cursos = db.Curso.Include(c=> c.ComentarioLista).AsNoTracking();
+                var cursos = db.Curso.Include(c=>c.InstructorLink).ThenInclude(ci=>ci.Instructor).AsNoTracking();
                 foreach (var curso in cursos)
                 {
                     System.Console.WriteLine(curso.Titulo);
-                    foreach(var comentario in curso.ComentarioLista){
-                        System.Console.WriteLine("**********"+comentario.ComentarioTexto);
+                    foreach(var link in curso.InstructorLink){
+                        System.Console.WriteLine("*****"+link.Instructor.Nombre);
                     }
                 }
             }
+            // using(var db = new AppVentaCursosContext()){
+            //     var cursos = db.Curso.Include(c=> c.ComentarioLista).AsNoTracking();
+            //     foreach (var curso in cursos)
+            //     {
+            //         System.Console.WriteLine(curso.Titulo);
+            //         foreach(var comentario in curso.ComentarioLista){
+            //             System.Console.WriteLine("**********"+comentario.ComentarioTexto);
+            //         }
+            //     }
+            // }
 
             // using(var db = new AppVentaCursosContext()){
             //     var cursos = db.Curso.Include(p=> p.PrecioPromocion).AsNoTracking();

@@ -14,5 +14,7 @@ namespace LeerData
         public Precio PrecioPromocion{get;set;}//crear referencia a objeto referenciado en SQL
         public ICollection<Comentario> ComentarioLista{get;set;}
 
+        public ICollection<CursoInstructor> InstructorLink {get;set;}
+
     }
 }
